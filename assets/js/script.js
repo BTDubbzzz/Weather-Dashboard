@@ -53,6 +53,7 @@ function render(place, current) {
 $('#search-button').click(function (event) {
 	inputCity = $('#searchBar').val();
 	getCoords(inputCity);
+    createNewButton(inputCity);
 });
 
 $('#five-day-container').hide();
@@ -64,7 +65,10 @@ $('.recent-button-color').click(function (event) {
     getCoords(current);
 })
 
+function createNewButton(city) {
+    $('#recent-template').clone(true).text(city).addClass('recent-button-color').appendTo('#recent-buttons-container')
 
+};
 
 function populateDailyForecast(arr, thisCity) {
     console.log(arr, thisCity)

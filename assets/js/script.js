@@ -82,7 +82,7 @@ function populateDailyForecast(arr, thisCity) {
         arr[i].children('.daily-icon').attr('src', newIconURL)
         arr[i].children('.daily-temp').text('TEMP HIGH: ' + thisCity.daily[i].temp.max + 'F')
         arr[i].children('.daily-wind').text('WIND: ' + thisCity.daily[i].wind_speed + 'mph') 
-        arr[i].children('.daily-humidity').text('HUMIDITY :' + thisCity.daily[i].humidity + '%')
+        arr[i].children('.daily-humidity').text('HUMIDITY: ' + thisCity.daily[i].humidity + '%')
         
     }
 }

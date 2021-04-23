@@ -97,7 +97,8 @@
         </div>
         <div class="col" id="right-side-container">
           <div id="current-city" class="border-10 mt-2 mx-3 p-3">
-            <h1 id="weather-header">$Current City / Date / icon</h1>
+            <h1 id="weather-header">$Current City / Date</h1>
+            <img src="" alt="" id="main-icon" />
             <p class="mt-4" id="temp-p">Temp: x</p>
             <p class="mt-4" id="humidity-p">Humidity: x</p>
             <p class="mt-4" id="wind-p">Wind: x</p>
@@ -162,6 +163,13 @@
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/advancedFormat.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/weekOfYear.js"></script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_advancedFormat);
+      dayjs.extend(window.dayjs_plugin_weekOfYear);
+    </script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

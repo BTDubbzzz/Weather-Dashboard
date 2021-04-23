@@ -52,13 +52,13 @@ function render(place, current) {
     $('#humidity-p').text('Humidity: ' + current.current.humidity + '%')
     $('#wind-p').text('Wind: ' + current.current.wind_speed + ' mph')
     $('#uv-p').text('UV Index: ' + current.current.uvi)
-    if (current.current.uvi < 2) {
+    if (parseFloat(current.current.uvi) < 2) {
         $('#uv-p').addClass('bg-success')
     }
-    if (current.current.uvi >= 2 && current.current.uvi < 7) {
+    if (parseFloat(current.current.uvi) >= 2 && parseFloat(current.current.uvi) < 7) {
         $('#uv-p').addClass('bg-warning')
     }
-    if (current.current.uvi >= 7) {
+    if (parseFloat(current.current.uvi) >= 7) {
         $('#uv-p').addClass('bg-danger');
     } 
 

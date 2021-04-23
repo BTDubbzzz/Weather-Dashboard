@@ -1,26 +1,34 @@
 .border-10 {
-	border: solid black;
-	border-width: 2px;
+  border: solid black;
+  border-width: 2px;
 }
 
 .weather-card {
-	width: 10px;
-	height: auto;
-	background-color: rgb(74, 90, 122);
+  width: 10px;
+  height: auto;
+  background-color: rgb(74, 90, 122);
 }
 
 .recent-button-color {
-	background-color: rgb(206, 197, 197);
+  background-color: rgb(206, 197, 197);
 }
 
 .recent-button-color:hover {
-	background-color: rgb(131, 126, 126);
+  background-color: rgb(131, 126, 126);
 }
 
 .nav-gradient {
-	background-image: linear-gradient(to right, rgb(94, 94, 255), rgb(0, 23, 151));
+  background-image: linear-gradient(
+    to right,
+    rgb(94, 94, 255),
+    rgb(0, 23, 151)
+  );
 }
 
 #header-link:hover {
-	text-decoration: none;
+  text-decoration: none;
+}
+
+#recent-buttons-container {
+  overflow-y: auto;
 }

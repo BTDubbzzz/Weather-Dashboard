@@ -10,6 +10,11 @@ localStorageArray.forEach(element => {
     createNewButton(element)
 });
 
+$('#header-link').click(function (event) {
+    localStorage.clear()
+    location.reload();
+})
+
 var dayZeroEl = '0'
 var dayOneEl = $('#day-1');
 var dayTwoEl = $('#day-2');
@@ -47,6 +52,15 @@ function render(place, current) {
     $('#humidity-p').text('Humidity: ' + current.current.humidity + '%')
     $('#wind-p').text('Wind: ' + current.current.wind_speed + ' mph')
     $('#uv-p').text('UV Index: ' + current.current.uvi)
+    if (current.current.uvi < 2) {
+        $('#uv-p').addClass('bg-success')
+    }
+    if (current.current.uvi >= 2 && current.current.uvi < 7) {
+        $('#uv-p').addClass('bg-warning')
+    }
+    if (current.current.uvi >= 7) {
+        $('#uv-p').addClass('bg-danger');
+    } 
 
     populateDailyForecast(fiveDayArray, current)
     $('#five-day-container').show();

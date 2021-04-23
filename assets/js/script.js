@@ -37,7 +37,7 @@ async function getCoords(city) {
 
 function render(place, current) {
     console.log(current.current.weather[0].icon)
-    var iconURL = 'http://openweathermap.org/img/wn/' + current.current.weather[0].icon + '@2x.png'
+    var iconURL = 'https://openweathermap.org/img/wn/' + current.current.weather[0].icon + '@2x.png'
 	$('#weather-header').text(place + '  (' + dayjs.unix(current.current.dt).format('M/DD/YYYY') + ') ');
     $('#main-icon').attr("src", iconURL)
     $('#temp-p').text('Temp: ' + current.current.temp + 'F')
@@ -69,9 +69,15 @@ $('.recent-button-color').click(function (event) {
 function populateDailyForecast(arr, thisCity) {
     console.log(arr, thisCity)
     for (let i = 1; i < 6; i++) {
+        var newIconURL = 'https://openweathermap.org/img/wn/' + thisCity.daily[i].weather[0].icon + '@2x.png'
+        console.log(newIconURL)
         console.log(thisCity.daily[i].dt)
         console.log('arr[i]', arr[i])
         arr[i].children('.daily-date').text(dayjs.unix(thisCity.daily[i].dt).format('M/DD/YYYY'))
+        arr[i].children('.daily-icon').attr('src', newIconURL)
+        arr[i].children('.daily-temp').text('TEMP HIGH: ' + thisCity.daily[i].temp.max + 'F')
+        arr[i].children('.daily-wind').text('WIND: ' + thisCity.daily[i].wind_speed + 'mph') 
+        arr[i].children('.daily-humidity').text('HUMIDITY :' + thisCity.daily[i].humidity + '%')
         
     }
 }

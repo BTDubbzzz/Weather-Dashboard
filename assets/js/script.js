@@ -2,8 +2,13 @@ var key = '435f7f0c309bb6acd4a2c29f9d54727c';
 var weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 var newObject;
 var inputCity;
-var dayTest = dayjs().format()
-console.log(dayTest)
+var localStorageArray = [];
+if (localStorage.getItem('test')) {
+    localStorageArray = JSON.parse(localStorage.getItem('test'));
+}
+localStorageArray.forEach(element => {
+    createNewButton(element)
+});
 
 var dayZeroEl = '0'
 var dayOneEl = $('#day-1');
@@ -31,12 +36,10 @@ async function getCoords(city) {
 	);
 	var data2 = await response2.json();
 	var cityConditions = data2;
-	console.log('cityConditions :>> ', cityConditions);
 	render(city, cityConditions);
 }
 
 function render(place, current) {
-    console.log(current.current.weather[0].icon)
     var iconURL = 'https://openweathermap.org/img/wn/' + current.current.weather[0].icon + '@2x.png'
 	$('#weather-header').text(place + '  (' + dayjs.unix(current.current.dt).format('M/DD/YYYY') + ') ');
     $('#main-icon').attr("src", iconURL)
@@ -54,29 +57,27 @@ $('#search-button').click(function (event) {
 	inputCity = $('#searchBar').val();
 	getCoords(inputCity);
     createNewButton(inputCity);
+    localStorageArray.push(inputCity);
+    localStorage.setItem('test', JSON.stringify(localStorageArray))
 });
 
 $('#five-day-container').hide();
-
+$('#recent-template').hide();
 
 $('.recent-button-color').click(function (event) {
-    console.log($(this).text())
     var current = $(this).text()
     getCoords(current);
 })
 
 function createNewButton(city) {
-    $('#recent-template').clone(true).text(city).addClass('recent-button-color').appendTo('#recent-buttons-container')
-
+    if (city) {
+    $('#recent-template').clone(true).text(city).addClass('recent-button-color').appendTo('#recent-buttons-container').show()
+    }
 };
 
 function populateDailyForecast(arr, thisCity) {
-    console.log(arr, thisCity)
     for (let i = 1; i < 6; i++) {
         var newIconURL = 'https://openweathermap.org/img/wn/' + thisCity.daily[i].weather[0].icon + '@2x.png'
-        console.log(newIconURL)
-        console.log(thisCity.daily[i].dt)
-        console.log('arr[i]', arr[i])
         arr[i].children('.daily-date').text(dayjs.unix(thisCity.daily[i].dt).format('M/DD/YYYY'))
         arr[i].children('.daily-icon').attr('src', newIconURL)
         arr[i].children('.daily-temp').text('TEMP HIGH: ' + thisCity.daily[i].temp.max + 'F')

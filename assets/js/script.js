@@ -35,3 +35,9 @@ $('#search-button').click(function (event) {
 });
 
 $('#five-day-container').empty();
+
+$('.recent-button-color').click(function (event) {
+    console.log($(this).text())
+    var current = $(this).text()
+    getCoords(current);
+})

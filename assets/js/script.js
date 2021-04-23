@@ -53,13 +53,13 @@ function render(place, current) {
     $('#wind-p').text('Wind: ' + current.current.wind_speed + ' mph')
     $('#uv-p').text('UV Index: ' + current.current.uvi)
     if (parseFloat(current.current.uvi) < 2) {
-        $('#uv-p').addClass('bg-success')
+        $('#uv-p').attr('class', 'mt-4 bg-success')
     }
     if (parseFloat(current.current.uvi) >= 2 && parseFloat(current.current.uvi) < 7) {
-        $('#uv-p').addClass('bg-warning')
+        $('#uv-p').attr('class', ' mt-4 bg-warning')
     }
     if (parseFloat(current.current.uvi) >= 7) {
-        $('#uv-p').addClass('bg-danger');
+        $('#uv-p').attr('class', 'mt-4 bg-danger');
     } 
 
     populateDailyForecast(fiveDayArray, current)

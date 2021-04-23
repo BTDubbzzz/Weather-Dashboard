@@ -5,6 +5,14 @@ var inputCity;
 var dayTest = dayjs().format()
 console.log(dayTest)
 
+var dayZeroEl = '0'
+var dayOneEl = $('#day-1');
+var dayTwoEl = $('#day-2');
+var dayThreeEl = $('#day-3');
+var dayFourEl = $('#day-4');
+var dayFiveEl = $('#day-5');
+var fiveDayArray = [dayZeroEl, dayOneEl, dayTwoEl, dayThreeEl, dayFourEl, dayFiveEl]
+
 async function getCoords(city) {
 	var response = await fetch(weatherURL + city + '&appid=' + key);
 	var data = await response.json();
@@ -36,6 +44,10 @@ function render(place, current) {
     $('#humidity-p').text('Humidity: ' + current.current.humidity + '%')
     $('#wind-p').text('Wind: ' + current.current.wind_speed + ' mph')
     $('#uv-p').text('UV Index: ' + current.current.uvi)
+
+    populateDailyForecast(fiveDayArray, current)
+    $('#five-day-container').show();
+
 }
 
 $('#search-button').click(function (event) {
@@ -43,10 +55,23 @@ $('#search-button').click(function (event) {
 	getCoords(inputCity);
 });
 
-$('#five-day-container').empty();
+$('#five-day-container').hide();
+
 
 $('.recent-button-color').click(function (event) {
     console.log($(this).text())
     var current = $(this).text()
     getCoords(current);
 })
+
+
+
+function populateDailyForecast(arr, thisCity) {
+    console.log(arr, thisCity)
+    for (let i = 1; i < 6; i++) {
+        console.log(thisCity.daily[i].dt)
+        console.log('arr[i]', arr[i])
+        arr[i].children('.daily-date').text(dayjs.unix(thisCity.daily[i].dt).format('M/DD/YYYY'))
+        
+    }
+}

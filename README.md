@@ -9,6 +9,10 @@ The deployed website can be accessed at the below link.
  
 https://btdubbzzz.github.io/Weather-Dashboard/#
 
+>Screenshot
+
+![Application Screenshot](./assets/weatherdashboard.PNG)
+
 ## Process / What I learned
 
 For this project I learned about fetch calls and I even dived into learning more about async functions and the await keyword. I learned to maniuplate and use the data being brought in from server-side APIs. I also got more work with bootstrap and JQuery and I feel that this is my best looking and most polished app yet. There are many improvements I would make that I will detail below but overall I am super pleased with this project.
